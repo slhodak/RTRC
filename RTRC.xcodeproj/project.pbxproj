@@ -14,6 +14,7 @@
 		173B6A222C29BEC400B63FA0 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B6A212C29BEC400B63FA0 /* MetalView.swift */; };
 		173B6A242C29C11100B63FA0 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B6A232C29C11100B63FA0 /* Renderer.swift */; };
 		173B6A262C29C54200B63FA0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B6A252C29C54200B63FA0 /* Utils.swift */; };
+		173B6A282C29D52500B63FA0 /* RayTracer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 173B6A272C29D52500B63FA0 /* RayTracer.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		173B6A212C29BEC400B63FA0 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		173B6A232C29C11100B63FA0 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		173B6A252C29C54200B63FA0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		173B6A272C29D52500B63FA0 /* RayTracer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = RayTracer.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				173B6A122C29BCF600B63FA0 /* RTRCApp.swift */,
 				173B6A142C29BCF600B63FA0 /* ContentView.swift */,
 				173B6A232C29C11100B63FA0 /* Renderer.swift */,
+				173B6A272C29D52500B63FA0 /* RayTracer.metal */,
 				173B6A212C29BEC400B63FA0 /* MetalView.swift */,
 				173B6A252C29C54200B63FA0 /* Utils.swift */,
 				173B6A162C29BCF700B63FA0 /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				173B6A262C29C54200B63FA0 /* Utils.swift in Sources */,
 				173B6A242C29C11100B63FA0 /* Renderer.swift in Sources */,
 				173B6A222C29BEC400B63FA0 /* MetalView.swift in Sources */,
+				173B6A282C29D52500B63FA0 /* RayTracer.metal in Sources */,
 				173B6A152C29BCF600B63FA0 /* ContentView.swift in Sources */,
 				173B6A132C29BCF600B63FA0 /* RTRCApp.swift in Sources */,
 			);
