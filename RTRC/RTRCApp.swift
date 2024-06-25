@@ -16,8 +16,9 @@ struct RTRCApp: App {
         metalView = MTKView()
         metalView.device = device
         metalView.colorPixelFormat = .bgra8Unorm
+        metalView.enableSetNeedsDisplay = true
+        metalView.clearColor = MTLClearColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         metalView.framebufferOnly = false
-        metalView.preferredFramesPerSecond = 30
         renderer = Renderer(device: device, view: metalView)
         metalView.delegate = renderer
     }
@@ -25,6 +26,6 @@ struct RTRCApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(device: device, metalView: metalView)
-        }
+        }.windowResizability(.contentSize)
     }
 }

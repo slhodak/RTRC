@@ -10,5 +10,6 @@ struct ContentView: View {
             MetalView(device: device, view: metalView)
         }
         .padding()
+        .frame(width: 600, height: 600)
     }
 }
