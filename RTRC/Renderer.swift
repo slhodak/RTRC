@@ -7,8 +7,7 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
     let commandQueue: MTLCommandQueue
     let computePipelineState: MTLComputePipelineState
 //    let accelerationStructure: MTLAccelerationStructure
-//    var outputTexture: MTLTexture
-    var uniforms: Uniforms
+    @Published var cameraPosition = SIMD3<Float>(0, 0, -4)
     
     init(device: MTLDevice, view: MTKView) {
         self.device = device
@@ -16,9 +15,6 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         commandQueue = device.makeCommandQueue()!
         computePipelineState = Renderer.makeComputePipelineState(device: device)
 //        accelerationStructure = Renderer.makeAccelerationStructure(device: device)
-//        outputTexture = Renderer.makeOutputTexture(device: device)
-        uniforms = Renderer.makeUniforms()
-        
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
@@ -29,6 +25,8 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
               let computeEncoder = commandBuffer.makeComputeCommandEncoder() else {
             return
         }
+        
+        var uniforms = makeUniforms()
         
         computeEncoder.setComputePipelineState(computePipelineState)
 //        computeEncoder.setAccelerationStructure(accelerationStructure, bufferIndex: 0)
@@ -47,23 +45,11 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         commandBuffer.commit()
     }
     
-    static func makeUniforms() -> Uniforms {
-        return Uniforms(cameraPosition: SIMD3<Float>(0, 0, -5),
+    func makeUniforms() -> Uniforms {
+        return Uniforms(cameraPosition: cameraPosition,
                         sphereCenter: SIMD3<Float>(0, 0, 0),
                         sphereRadius: 1.0)
     }
-    
-//    static func makeOutputTexture(device: MTLDevice) -> MTLTexture {
-//        let descriptor = MTLTextureDescriptor()
-//        descriptor.width = 300
-//        descriptor.height = 300
-//        descriptor.pixelFormat = .bgra8Unorm
-//        guard let texture = device.makeTexture(descriptor: descriptor) else {
-//            fatalError("Failed to make output texture")
-//        }
-//        
-//        return texture
-//    }
     
     static func makeComputePipelineState(device: MTLDevice) -> MTLComputePipelineState {
         do {
