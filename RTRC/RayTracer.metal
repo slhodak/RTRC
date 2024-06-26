@@ -17,6 +17,7 @@ struct Uniforms {
     float3 cameraPosition;
     float3 sphereCenter;
     float sphereRadius;
+    float3 lightColor;
 };
 
 bool intersectSphere(Ray ray, Sphere sphere, thread float &t) {
@@ -62,7 +63,7 @@ kernel void rayTraceKernel(texture2d<float, access::write> outTexture [[texture(
         
         float3 lightDir = normalize(float3(1, 1, -1));
         float diffuse = max(0.0f, dot(normal, lightDir));
-        color = float3(1.0, 0.5, 0.2) * diffuse;
+        color = uniforms.lightColor * diffuse;
     }
     
     outTexture.write(float4(color, 1.0), gid);

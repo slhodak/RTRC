@@ -8,6 +8,7 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
     let computePipelineState: MTLComputePipelineState
 //    let accelerationStructure: MTLAccelerationStructure
     @Published var cameraPosition = SIMD3<Float>(0, 0, -4)
+    @Published var lightColor = SIMD3<Float>(1, 1, 1)
     
     init(device: MTLDevice, view: MTKView) {
         self.device = device
@@ -48,7 +49,8 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
     func makeUniforms() -> Uniforms {
         return Uniforms(cameraPosition: cameraPosition,
                         sphereCenter: SIMD3<Float>(0, 0, 0),
-                        sphereRadius: 1.0)
+                        sphereRadius: 1.0,
+                        lightColor: lightColor)
     }
     
     static func makeComputePipelineState(device: MTLDevice) -> MTLComputePipelineState {
@@ -90,4 +92,5 @@ struct Uniforms {
     var cameraPosition: SIMD3<Float>
     var sphereCenter: SIMD3<Float>
     var sphereRadius: Float
+    var lightColor: SIMD3<Float>
 }
