@@ -57,6 +57,17 @@ kernel void rayTraceKernel(texture2d<float, access::write> outTexture [[texture(
     float t;
     float3 color = float3(0.1, 0.1, 0.1); // Background color
     
+    Sphere sphere2 = { uniforms.sphereCenter + float3(1, 0, 1), uniforms.sphereRadius };
+    
+    if (intersectSphere(ray, sphere2, t)) {
+        float3 hitPoint = ray.origin + t * ray.direction;
+        float3 normal = sphereNormal(hitPoint, sphere);
+        
+        float3 lightDir = normalize(float3(1, 1, -1));
+        float diffuse = max(0.0f, dot(normal, lightDir));
+        color = uniforms.lightColor * diffuse;
+    }
+    
     if (intersectSphere(ray, sphere, t)) {
         float3 hitPoint = ray.origin + t * ray.direction;
         float3 normal = sphereNormal(hitPoint, sphere);
@@ -65,6 +76,8 @@ kernel void rayTraceKernel(texture2d<float, access::write> outTexture [[texture(
         float diffuse = max(0.0f, dot(normal, lightDir));
         color = uniforms.lightColor * diffuse;
     }
+    
+    
     
     outTexture.write(float4(color, 1.0), gid);
 }
